@@ -26,6 +26,7 @@ public class ClienteModel {
 
     private Boolean sexo;
 
+    @Column(length = 22)
     private String telefone;
 
     private String email;
@@ -33,14 +34,17 @@ public class ClienteModel {
     @Enumerated(EnumType.STRING)
     private Identificacao identificacao;
 
+    @Column(length = 50)
     private String identificacaoNumber;
 
     private String observacao;
 
+    @Column(length = 50)
     private String procTipo;
 
     private Boolean procAlugando;
 
+    @Column(length = 50)
     private String procComodos;
 
     private Boolean ativo;

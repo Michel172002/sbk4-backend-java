@@ -26,6 +26,7 @@ public class ProprietarioModel {
 
     private Boolean sexo;
 
+    @Column(length = 22)
     private String telefone;
 
     private String email;
@@ -33,6 +34,7 @@ public class ProprietarioModel {
     @Enumerated(EnumType.STRING)
     private Identificacao identificacao;
 
+    @Column(length = 50)
     private String identificacaoNumero;
 
     private String observacao;

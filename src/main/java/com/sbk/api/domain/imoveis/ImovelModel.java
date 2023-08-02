@@ -23,6 +23,7 @@ public class ImovelModel {
     @JoinColumn(name = "id_prop")
     private ProprietarioModel proprietario;
 
+    @Column(length = 50)
     private String tipo;
 
     private Double preco;
@@ -31,6 +32,7 @@ public class ImovelModel {
 
     private Boolean financia;
 
+    @Column(length = 50)
     private String area;
 
     private String rua;
@@ -43,10 +45,13 @@ public class ImovelModel {
 
     private String complemento;
 
+    @Column(length = 55)
     private String estado;
 
+    @Column(length = 10)
     private String cep;
 
+    @Column(length = 50)
     private String comodos;
 
     private String descricao;

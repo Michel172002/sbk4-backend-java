@@ -20,8 +20,10 @@ public class CorretorModel {
 
     private String nome;
 
+    @Column(length = 22)
     private String telefone;
 
+    @Column(length = 50)
     private String creci;
 
     private Boolean ativo;
