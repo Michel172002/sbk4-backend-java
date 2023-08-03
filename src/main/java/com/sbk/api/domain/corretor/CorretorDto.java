@@ -9,8 +9,6 @@ public record CorretorDto(
         @NotBlank
         String telefone,
         @NotBlank
-        String creci,
-        @NotNull
-        Boolean ativo
+        String creci
 ) {
 }

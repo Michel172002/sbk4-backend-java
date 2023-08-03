@@ -34,7 +34,7 @@ public class CorretorModel {
         this.nome = dados.nome();
         this.telefone = dados.telefone();
         this.creci = dados.creci();
-        this.ativo = dados.ativo();
+        this.ativo = true;
         this.createAt = LocalDateTime.now();
         this.lastUpdate = LocalDateTime.now();
     }
