@@ -38,4 +38,65 @@ public class AtividadeModel {
     private LocalDateTime createAt;
 
     private LocalDateTime lastUpdate;
+
+    public AtividadeModel(ImovelModel imovel, ClienteModel cliente, AtividadeDto dados){
+        this.imovel = imovel;
+        this.cliente = cliente;
+        this.ativo = dados.ativo();
+        this.vencimento = dados.vencimento();
+        this.situacao = dados.situacao();
+        this.createAt = LocalDateTime.now();
+        this.lastUpdate = LocalDateTime.now();
+    }
+
+    public void EditarDados(ImovelModel imovel, ClienteModel cliente, AtividadeEditarDadosDto dados){
+        if(imovel != null){
+            this.imovel = imovel;
+        }
+        if(cliente != null){
+            this.cliente = cliente;
+        }
+        if(dados.ativo() != null){
+            this.ativo = dados.ativo();
+        }
+        if(dados.vencimento() != null){
+            this.vencimento = dados.vencimento();
+        }
+        if(dados.situacao() != null){
+            this.situacao = dados.situacao();
+        }
+        this.lastUpdate = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public ImovelModel getImovel() {
+        return imovel;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public int getVencimento() {
+        return vencimento;
+    }
+
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    public LocalDateTime getCreateAt() {
+        return createAt;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
 }
