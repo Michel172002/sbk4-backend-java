@@ -9,5 +9,5 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 - **JWT**
 
 # Requisitos
-- DK17
+- JDK17
 - MySQL
