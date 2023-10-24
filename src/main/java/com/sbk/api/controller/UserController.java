@@ -1,6 +1,7 @@
 package com.sbk.api.controller;
 
 import com.sbk.api.domain.user.*;
+import com.sbk.api.infra.security.SecurityConfigurations;
 import com.sbk.api.infra.security.TokenJwtDataDto;
 import com.sbk.api.infra.security.TokenService;
 import com.sbk.api.repository.UserRepository;
@@ -28,6 +29,9 @@ public class UserController {
     @Autowired
     private AuthenticationManager maneger;
 
+    @Autowired
+    private SecurityConfigurations securityConfigurations;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid UserDadosAutenticacao dados){
         var authToken = new UsernamePasswordAuthenticationToken(dados.nome(), dados.senha());
@@ -40,7 +44,8 @@ public class UserController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarUser(@RequestBody @Valid UserDto userDto){
-        var user = new UserModel(userDto);
+        String hashSenha = securityConfigurations.passwordEncoder().encode(userDto.senha());
+        var user = new UserModel(userDto, hashSenha);
         userRepository.save(user);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(new UserExibirDadosDto(user));
@@ -64,7 +69,12 @@ public class UserController {
     @Transactional
     public ResponseEntity editarDadosUser(@PathVariable(value = "id") Long id, @RequestBody @Valid UserEditarDadosDto dadosDto){
         var user = userRepository.getReferenceById(id);
-        user.editarDados(dadosDto);
+        if(dadosDto.senha() != null){
+            String hashSenha = securityConfigurations.passwordEncoder().encode(dadosDto.senha());
+            user.editarDados(dadosDto, hashSenha);
+        }else {
+            user.editarDados(dadosDto, null);
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(new UserExibirDadosDto(user));
     }

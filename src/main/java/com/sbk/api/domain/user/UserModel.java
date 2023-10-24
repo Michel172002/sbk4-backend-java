@@ -3,7 +3,6 @@ package com.sbk.api.domain.user;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,20 +32,20 @@ public class UserModel implements UserDetails {
 
     private LocalDateTime lastUpdate;
 
-    public UserModel(UserDto dados){
+    public UserModel(UserDto dados, String hashSenha){
         this.nome = dados.nome();
-        this.senha = dados.senha();
+        this.senha = hashSenha;
         this.cargo = dados.cargo();
         this.createAt = LocalDateTime.now();
         this.lastUpdate = LocalDateTime.now();
     }
 
-    public void editarDados(UserEditarDadosDto dados){
+    public void editarDados(UserEditarDadosDto dados, String hashSenha){
         if(dados.nome() != null){
             this.nome = dados.nome();
         }
-        if(dados.senha() != null){
-            this.senha = dados.senha();
+        if(hashSenha != null){
+            this.senha = hashSenha;
         }
         if(dados.cargo() != null){
             this.cargo = dados.cargo();
